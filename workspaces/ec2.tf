@@ -1,3 +1,18 @@
+#before using terraform workspace, first you need to ensure or specify which workspaces you are going to use like dev, pord nad stage or qa...
+# if to see the list of workspaces:
+# terraform workspace list
+
+# to create a new workspace dev:
+# terraform workspace new dev
+# terraform workspace new pord
+
+# to select the workspace:
+# terraform workspace select dev
+
+# to see in which workspace you are:
+# terraform workspace show
+
+
 resource "aws_security_group" "allow-ssh" {
     name = "allow-ssh-${terraform.workspace}"
     description = "allowing port 22 via ssh protocol"
@@ -8,7 +23,7 @@ resource "aws_security_group" "allow-ssh" {
         protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
-    egress { 
+    ingress { 
         from_port = 22
         to_port = 22
         protocol = "tcp"
